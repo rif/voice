@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE article SYSTEM "../../lib/docbook-defs/sdocbook.dtd">
+<article>
+	<title>Template Project</title>
+	<para>
+	This is the online presence of the Template Project.
+	</para>
+
+	<para>
+	The purpose of this page is to give a permanent overview on the project. The main directions of this page are:
+	<itemizedlist>
+	<listitem>
+	<para>Product Documentation. The documentation will be developed in parallel with the Timma development, so the documentation should be a window on the status of the project.</para>
+	</listitem>
+
+	<listitem>
+	<para>Development Process. The development process will be a permanent concern during this project and therefore an excellent candidate for documentation.</para>
+	</listitem>
+
+	</itemizedlist>
+	</para>
+</article>

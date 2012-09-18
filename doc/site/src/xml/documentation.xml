@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<documentation>
+	<doc-topic href="./documentation/purpose.xml"/>
+	<doc-topic href="./documentation/features.xml"/>
+	<doc-topic href="./documentation/prereq.xml"/>
+	<doc-topic href="./documentation/cookbook.xml"/>
+	<doc-topic href="./documentation/requirements.xml">
+		<use-case-list>
+			<use-case-item href="./documentation/usecases/sample.xml"/>
+			<use-case-item href="./documentation/usecases/sample1.xml"/>
+			<use-case-item href="./documentation/usecases/sample2.xml"/>
+			<use-case-item href="./documentation/usecases/sample3.xml"/>
+		</use-case-list>
+		<doc-topic title="CRC Cards">
+			<doc-topic href="./documentation/crcs/sample.xml"/>
+			<doc-topic href="./documentation/crcs/refered_sample.xml"/>
+		</doc-topic>
+	</doc-topic>
+	<doc-topic href="./documentation/domain_model.xml"/>
+	<doc-topic href="./documentation/ui.xml"/>
+	<doc-topic href="./documentation/architecture.xml"/>
+	<doc-topic href="./documentation/implementation.xml"/>
+</documentation>

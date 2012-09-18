@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE project [<!ENTITY site SYSTEM "build_site.xml">]>
+
+<project name="Ant" default="usage" basedir="../../..">
+
+	<property name="site.base.dir" value="./"/>
+	
+	&site;
+
+</project>
+

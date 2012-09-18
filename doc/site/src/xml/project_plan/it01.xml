@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This is the iteration in progress !!! (see the inprogress attribute) --> 
+
+<iteration inprogress="yes">
+	<period start="21.01.2002" end="03.02.2002"/>
+	<cvs-tag>it01</cvs-tag>
+	<goals>
+		<itemizedlist>
+			<listitem>
+				The proposed goals for this iteration(01).
+			</listitem>
+		</itemizedlist>
+	</goals>
+	<accomplishments>
+		<itemizedlist>
+			<listitem>
+				What goals have been accomplished in this iteration.
+			</listitem>
+		</itemizedlist>
+	</accomplishments>
+	<notes>
+		<itemizedlist>
+			<listitem>
+				Here comes the notes.
+			</listitem>
+		</itemizedlist>    	    	    
+	</notes>
+</iteration>

@@ -1,0 +1,131 @@
+<!-- ================================== -->
+<!-- $Id: build_site.xml,v 1.4 2002/02/19 17:37:37 cdan Exp $ -->
+<!-- ================================== -->
+
+	<!-- =================================== -->
+	<!--         Properties                  -->
+	<!-- =================================== -->
+	<property name="site.build.dir" value="${site.base.dir}/tmp"/>
+	<property name="site.html.dir" value="${site.build.dir}/html"/>
+	<property name="site.pdf.dir" value="${site.build.dir}/pdf"/>
+	<property name="site.print.tmp.dir" value="${site.build.dir}/print_tmp"/>
+	<property name="site.src.dir" value="${site.base.dir}/src"/>
+	<property name="site.xml.src.dir" value="${site.src.dir}/xml"/>
+	<property name="site.xsl.src.dir" value="${site.src.dir}/xsl"/>
+	<property name="site.lib.dir" value="${site.base.dir}/lib"/>
+	<property name="site.xsl.lib.dir" value="${site.lib.dir}/docbook-xsl"/>
+	<property name="site.css.src.dir" value="${site.src.dir}/css"/>
+	<property name="site.res.dir" value="${site.base.dir}/res"/>
+
+	<!-- THIS MUST BE MODIFIED TO SUITE YOUR PROJECT  -->
+	<property name="site.name" value="project_template"/>
+	<property name="web.container" value="/home/httpd/html"/>
+	
+	<!-- ============================= Targets ============================= -->
+
+	<!-- ==================================== -->
+	<!--          Print a help line           -->
+	<!-- ==================================== -->
+	<target name="site.usage" description="Print a help line">
+		<echo>Use 'build -projecthelp' to see a sumary of targets you can execute ...</echo>
+	</target>
+
+	<!-- ==================================== -->
+	<!--        Create needed folders         -->
+	<!-- ==================================== -->
+	<target name="site.init" description="Make all initializations">
+		<mkdir dir="${site.html.dir}"/>
+		<mkdir dir="${site.pdf.dir}"/>
+		<mkdir dir="${site.print.tmp.dir}"/>
+		<tstamp>
+			<format property="time.stamp" pattern="d.MM.yyyy"/>
+			<format property="complete.time.stamp" pattern="d.MM.yyyy_hh-mm-ss"/>
+		</tstamp>
+	</target>
+	<!-- ==================================== -->
+	<!--         Make all clean               -->
+	<!-- ==================================== -->
+	<target name="site.clean" description="Make all clean">
+		<delete dir="${site.build.dir}"/>
+	</target>
+
+	<!-- ==================================== -->
+	<!--        Compile the Site              -->
+	<!-- ==================================== -->
+	<target name="site.compile" depends="site.init" description="Compile the Site">
+		<java classname="com.icl.saxon.StyleSheet" fork="yes" failonerror="yes">
+			<arg line="-o ${site.html.dir}/index.html ${site.xml.src.dir}/index.xml  ${site.xsl.src.dir}/html/index.xsl output.dir=${site.html.dir}/ current.date='${time.stamp}'"/>
+			<classpath>
+				<pathelement path="${site.lib.dir}/xerces.jar;${site.lib.dir}/saxon.jar"/>
+			</classpath>
+		</java>
+	</target>
+
+	<!-- ==================================== -->
+	<!--        Build the whole site          -->
+	<!-- ==================================== -->
+	<target name="site.build" depends="site.init, site.compile" description="Build the site in a temporary folder">
+		<copy todir="${site.html.dir}/css">
+			<fileset dir="${site.css.src.dir}">
+				<include name="**/*.css"/>
+	 		</fileset>
+		</copy>
+		<copy todir="${site.html.dir}/documentation/css">
+			<fileset dir="${site.css.src.dir}">
+				<include name="**/*.css"/>
+	 		</fileset>
+		</copy>
+		<copy todir="${site.html.dir}/project_plan/css">
+			<fileset dir="${site.css.src.dir}">
+				<include name="**/*.css"/>
+	 		</fileset>
+		</copy>
+		<copy todir="${site.html.dir}/documentation/usecases/css">
+			<fileset dir="${site.css.src.dir}">
+				<include name="**/*.css"/>
+	 		</fileset>
+		</copy>
+		<copy todir="${site.html.dir}/documentation/crcs/css">
+			<fileset dir="${site.css.src.dir}">
+				<include name="**/*.css"/>
+	 		</fileset>
+		</copy>
+	</target>
+
+	<!-- ==================================== -->
+	<!--  Deploy the site to a WEB container  -->
+	<!-- ==================================== -->
+	<target name="site.deploy" depends="site.build" description="Deploy the site to a WEB container">
+		<property name="deploy.dir" value="${web.container}/${site.name}"/>
+		<echo>Removing folder ${deploy.dir}</echo>
+		<delete dir="${deploy.dir}"/>
+		<mkdir dir="${deploy.dir}"/>
+		<copy todir="${deploy.dir}">
+			<fileset dir="${site.html.dir}">
+				<include name="*/**"/>
+	 		</fileset>
+		</copy>		
+		<echo>Site succesfully deployed on ${deploy.dir}</echo>	
+	</target>
+	
+	<!-- ====================================== -->
+	<!-- Generate PDF status report		    -->
+	<!-- ====================================== -->
+	<target name="pdf.status.report" depends="site.init" 
+		description="Generates the latest COMPLETED iteration report.">
+		<java classname="com.icl.saxon.StyleSheet" fork="yes" failonerror="yes">
+			<arg line="-o ${site.print.tmp.dir}/status_report.xml ${site.xml.src.dir}/project_plan.xml  ${site.xsl.src.dir}/print/status_report.xsl"/>
+			<classpath>
+				<pathelement path="${site.lib.dir}/xerces.jar;${site.lib.dir}/saxon.jar"/>
+			</classpath>
+		</java>			
+		<java classname="org.apache.fop.apps.Fop" fork="yes" failonerror="yes">
+			<arg line="-xml ${site.print.tmp.dir}/status_report.xml -xsl ${site.xsl.lib.dir}/fo/docbook.xsl -pdf ${site.pdf.dir}/status_report.pdf"/>
+			<classpath>
+				<fileset dir="${site.lib.dir}">
+					 <include name="**/*.jar"/>
+					 <exclude name="**/*saxon*"/>
+				</fileset>
+			</classpath>
+		</java>		
+	</target>

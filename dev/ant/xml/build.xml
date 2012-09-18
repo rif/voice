@@ -1,0 +1,201 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE project [<!ENTITY site SYSTEM "../../../doc/site/dev/ant/xml/build_site.xml">]>
+
+<project name="Ant" default="usage" basedir="../../..">
+
+	<!-- This is the place to include the site build configuration. -->
+	<property name="site.base.dir" value="doc/site/"/>
+		&site;
+		
+	<!-- ================================================== -->
+	<!--    Properties (Add your own properties here)       -->
+	<!-- ================================================== -->
+	<property name="build.dir" value="tmp/"/>
+	<property name="build.lib.dir" value="${build.dir}/lib/"/>
+	<property name="build.class.dir" value="${build.dir}/classes/"/>
+	<property name="build.test.dir" value="${build.dir}/test-classes/"/>
+	<property name="build.test.report.dir" value="${build.dir}/test-results"/>
+	<property name="java.src.dir" value="src/java/"/>
+	<property name="xml.src.dir" value="src/xml/"/>
+	<property name="lib.dir" value="lib/"/>
+	<property name="ant.lib.dir" value="dev/ant/lib/"/>
+	<property name="cfg.res.dir" value="res/cfg/"/>
+
+	<property name="classpath" value=""/>
+	<!-- comment these if JUnit is not present -->
+	<property name="junit.present" value="just to check"/>
+
+	<!-- ============================= Regular Targets ============================= -->
+	<!-- ==================================== -->
+	<!--          Print a help line           -->
+	<!-- ==================================== -->
+	<target name="usage" description="Print a help line">
+		<echo>Use 'build -projecthelp' to see a sumary of targets you can execute ...</echo>
+	</target>
+
+	<!-- ==================================== -->
+	<!--        Create needed folders         -->
+	<!-- and initialize the time variables    -->
+	<!-- ==================================== -->
+	<target name="init" description="Make all initializations">
+		<!-- you can get rid of the format tag if you only need -->
+		<!-- time initialization. Can be accessed with          -->
+		<!-- ${dstamp} and ${tstamp}                            -->
+		<tstamp>
+			<format property="cvs.time" pattern="yyyy-MM-dd hh:mm"/>
+		</tstamp>
+		<mkdir dir="${build.lib.dir}"/>
+		<mkdir dir="${build.class.dir}"/>
+		<mkdir dir="${build.test.dir}"/>
+		<mkdir dir="${build.test.report.dir}"/>
+	</target>
+
+	<!-- ==================================== -->
+	<!--         Make all clean               -->
+	<!-- remove all build files and temporary -->
+	<!-- folders                              -->
+	<!-- ==================================== -->
+	<target name="clean" depends="site.clean" description="Make all clean">
+		<delete dir="${build.lib.dir}"/>
+		<delete dir="${build.class.dir}"/>
+		<delete dir="${build.test.dir}"/>
+		<delete dir="${build.dir}"/>
+	</target>
+
+	<!-- ==================================== -->
+	<!--        Compile the Project           -->
+	<!-- ==================================== -->
+	<target name="compile" depends="init" description="Compile the Project">
+		<!-- javac srcdir="${java.src.dir}" 
+			destdir="${build.class.dir}" 
+			extdirs="${lib.dir}" 
+			excludes="test/**"/ -->
+	</target>
+
+	<!-- ==================================== Tests ================================== -->
+
+	<!-- =================================== -->
+	<!--        Compile Test Cases           -->
+	<!-- must depend on the target for compiling -->
+	<!-- the tests and the project classes.  -->
+	<!-- =================================== -->
+	<target name="compile.tests" depends="init,compile" description="Compile the Test Cases">
+		<!-- javac srcdir="${java.src.dir}" 
+			destdir="${build.test.dir}" 
+			classpath="${build.class.dir};${ant.lib.dir}/junit.jar" 
+			extdirs="${lib.dir}" 
+			includes="test/**" 
+			deprecation="on" 
+			fork="on"/ -->
+	</target>
+
+	<!-- ==================================== -->
+	<!--        Run the Unit Test Cases       -->
+	<!-- ==================================== -->
+	<target name="run.tests" depends="compile.tests" if="junit.present" description="Run the Unit Test Cases">
+		<!-- haltonfailure is false so the junit won't stop on -->
+		<!-- a failing test, but continue with the remaining, but  -->
+		<!-- set a variable to be able to check later if there -->
+		<!-- were some tests that failed -->
+		<junit printsummary="yes" fork="yes" failureProperty="test.fail" haltonfailure="no">
+			<!-- classpath>
+				<fileset dir="${lib.dir}">
+					<include name="**/*.jar"/>
+				</fileset>
+				<fileset dir="${ant.lib.dir}">
+					<include name="**/*.jar"/>
+				</fileset>
+				<pathelement location="${build.test.dir}"/>
+				<pathelement location="${build.class.dir}"/>
+			</classpath>
+			<formatter type="xml" extension=".xml" usefile="yes"/ -->
+			<!-- Run all tests in ${build.test.dir} -->
+			<!-- batchtest todir="${build.test.report.dir}">
+				<fileset dir="${build.test.dir}">
+					<include name="**/Test*.class"/>
+				</fileset>
+			</batchtest -->
+		</junit>
+	</target>
+	
+	<!-- ==================================== -->
+	<!-- Test reports                         -->
+	<!-- Will run even if there were failed tests -->
+	<!-- ==================================== -->
+	<target name="test.report" depends="run.tests" description="Generate the HTML result of the tests">
+	<!-- Generate the HTML form of the reports -->
+		<!-- junitreport todir="${build.test.report.dir}">
+			<fileset dir="${build.test.report.dir}">
+				<include name="TEST-*.xml"/>
+			</fileset>
+			<report format="frames" todir="${build.test.report.dir}/html"/>
+		</junitreport -->
+	</target>
+
+	<!-- ==================================== -->
+	<!-- Test for test failures               -->
+	<!-- and fail if there were some ...      -->
+	<!-- This way you won't get a successful build if -->
+	<!-- some tests failed                    -->
+	<!-- ==================================== -->
+	<target name="check.tests.fail" if="test.fail" description="Fail if one of the tests faild.">
+	   <echo>There were some tests that failed ...</echo>
+	   <fail/>
+	</target>
+	
+	<!-- ==================================== -->  
+	<!--        Run some unit tests           -->
+	<!--  (you should use the test target as  -->
+	<!--   it checks for test failures)       -->  
+	<!-- ==================================== -->  
+	<target name="test" depends="run.tests, test.report, check.tests.fail" 
+		description="Run all tests and check for failure"/>
+
+	<!-- ================================ Cruise control ==================================== -->
+
+	<!-- =================================== -->
+	<!--       Cruise controll targets       -->
+	<!-- =================================== -->
+
+	<!-- you can change this properties using -Dcvs.user=.... -->
+	<property name="cvs.user" value="anonymous"/>
+	<property name="cvs.repository" value=":pserver:${cvs.user}@vscarpia.savatech.ro:/home/cvs/cvsrep"/>
+	<!-- MODIFY THE VALUE OF THE BELOW PROPERTY FROM project_template TO YOUR PROJECT NAME -->
+	<property name="cvs.package" value="project_template"/>
+
+	<!-- This is an ugli hack for including the test results from a -->
+	<!-- cruisecontrol instance running outside the project's source root. -->
+	<property name="test.results.dir" value="project_template/${build.test.report.dir}"/>
+
+	<!-- Update project from cvs -->
+	<!-- you must already be logged in -->
+	<target name="checkout" description="Update package from CVS">
+		<cvs cvsroot="${cvs.repository}" command="update -PA -d " package="${cvs.package}" dest=".."/>
+	</target>
+
+	<!-- target to check for CVS modifications and trigger a build -->
+	<target name="modificationset" depends="init">
+		<taskdef name="modificationset" 
+			 classname="net.sourceforge.cruisecontrol.ModificationSet" />
+		<echo message="Checking for modifications..."/>
+		<modificationset lastbuild="${lastGoodBuildTime}"
+				 quietperiod="30"
+				 dateformat="yyyy-MMM-dd HH:mm:ss">
+			<!-- add your own subfolders here -->
+			<!-- only files in this subfolders will be checked for modifications -->
+			<!-- and can trigger a new build -->
+			<cvselement cvsroot="${cvs.repository}"
+				    localworkingcopy="timma/src"/>
+			<cvselement cvsroot="${cvs.repository}"
+				    localworkingcopy="timma/doc/site"/>
+		</modificationset>
+	</target>
+
+	<!-- ADD IN THE DEPENDS ATTRIBUTE THE TASKS YOU WANT TO RUN FROM CRUISECONTROL -->
+	<target name="masterbuild" depends="init,modificationset,checkout,site.deploy,compile,test">
+	</target>
+
+	<target name="cleanbuild" depends="clean,masterbuild">
+	</target>
+</project>

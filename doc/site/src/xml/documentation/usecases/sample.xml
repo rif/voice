@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--  
+The 'level' of detail attribute can be: 
+        Summary ('summary'): involves multiple user goals
+	User Goal('user-goal'): is the goal the primary actor has, in trying to get his work done
+	Subfunction('sub-function'): depicts an inside system action
+-->
+<use-case title="The title of this use case"
+	level="summary">
+	<primary-actor>Who triggers the action</primary-actor>
+	<goal>The Goal (optional)</goal>
+	<scope>The scope defines the border of the system under discussion.</scope>
+
+	<precondition>What is the needed sytem's state before this usecase starts</precondition>
+	<minimal-guarantees>What this use case guarantees at the end for every possibility</minimal-guarantees>
+	<success-guarantees>Success Guarantee</success-guarantees>
+	<trigger>The condition that triggers the use case</trigger>
+	<scenario>
+		<step>
+			The Developer enters the login and the password.
+		</step>
+		<step>
+			The System finds the user name entry.
+		</step>
+		<step>
+			The System validates the password for the found user.
+			<extension-step>
+				The System validates the password for the found user.
+			</extension-step>
+		</step>
+	</scenario>
+	<open-issues>
+	Some open issues.
+	</open-issues>
+</use-case>

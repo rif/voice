@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+
+<project-site-index title="Template Project">
+	<main href="main.xml" title="Template Project"/>
+	<main-menu href="documentation.xml" title="Documentation"/>
+	<main-menu href="process.xml" title="Process"/>
+	<main-menu href="project_plan.xml" title="Status"/>
+	<main-menu href="misc.xml" title="Miscellaneous"/>
+</project-site-index>

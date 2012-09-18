@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<use-case title="Other Use Case" level="summary"> 
+	<primary-actor>Other primary actor</primary-actor>
+</use-case>

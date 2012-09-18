@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- $Id: refered_sample.xml,v 1.1 2002/02/19 17:37:37 cdan Exp $ -->
+
+<crc name="Refered class name">
+	<responsibility-list>
+		<responsibility>
+			The responsabilities of this class.
+		</responsibility>
+	</responsibility-list>
+</crc>
+

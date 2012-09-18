@@ -1,0 +1,54 @@
+body {
+	COLOR: #000000; 
+	FONT-FAMILY: Tahoma, Arial, Verdana, Helvetica, sans-serif; 
+	FONT-WEIGHT: normal; 
+	FONT-SIZE: smaller;
+
+	BACKGROUND: #FFFFFF;
+
+	PADDING-TOP: 20px;
+	PADDING-BOTTOM:4px;
+	PADDING-LEFT:4px;
+	PADDING-RIGHT:4px;
+}
+
+h1 {
+	FONT-FAMILY: Tahoma, Arial, Verdana, Helvetica, sans-serif;
+}
+
+.crcName {
+}
+
+.crcReponsibility {
+}
+
+.crcCollaboration {
+}
+
+A:link {
+	FONT-FAMILY: Tahoma, Arial, Verdana, Helvetica, sans-serif;
+	COLOR: #000099;
+	TEXT-DECORATION: none;
+	font-weight : normal;
+}
+
+A:active {
+	FONT-FAMILY: Tahoma, Arial, Verdana, Helvetica, sans-serif;
+	COLOR: #0000FF;
+	TEXT-DECORATION: none;
+	font-weight : normal;
+}
+
+A:visited {
+	FONT-FAMILY: Tahoma, Arial, Verdana, Helvetica, sans-serif;
+	COLOR: #000099;
+	TEXT-DECORATION: none;
+	font-weight : normal;
+}
+
+A:hover {
+	FONT-FAMILY: Tahoma, Arial, Verdana, Helvetica, sans-serif;
+	COLOR: #883333;
+	TEXT-DECORATION: none;
+	font-weight : normal;
+}

@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE article SYSTEM "../../lib/docbook-defs/sdocbook.dtd">
+<article>
+	<title>Process</title>
+	<section>
+	<title>Process</title>
+	<para>
+	Timma is developed in an iterative way. Thus, the project development is divided into releases. Each release, in its turn, is made of two weeks iterations. 
+	</para>
+	<para>
+	Each iteration and release completion is marked with a report. These reports can be found if you follow the link from the menu. An iteration report has the following parts:
+	<itemizedlist>
+		<listitem>
+		<para>The Period</para>
+		</listitem>
+		<listitem>
+		<para>The Goals</para>
+		</listitem>
+		<listitem>
+		<para>The Accomplishments</para>
+		</listitem>
+		<listitem>
+		<para>The Postponed Activities</para>
+		</listitem>
+		<listitem>
+		<para>The Next Iteration Plan</para>
+		</listitem>
+		<listitem>
+		<para>The CVS tag</para>
+		</listitem>
+	</itemizedlist>
+	</para>
+	<para>
+	The point of the iteration reports is to make clear the team estimations and its achievements making it easier to adjust the its estimation ability. We are interested in that because the estimation is the base for any managerial decision.
+	</para>
+	<para>
+	The communication environment between the team members is made of:
+	<itemizedlist>
+	<listitem>
+	<para>Pair Programming - only a part of the development is made in pair.</para>
+	</listitem>
+	<listitem>
+	<para>Periodical Meetings - there are short meetings every other day to adjust the plan and the estimations.</para>
+	</listitem>
+	<listitem>
+	<para>Documentation - the parallel documentation development also has the point of bringing into light shadowed problems, besides documenting the product for maintenance purposes.</para>
+	</listitem>
+	</itemizedlist>
+	</para>
+	</section>
+	
+	<section>
+	<title>Documentation</title>
+	<para>
+	The documentation is treated with raised importance. That is why the documentation is developed <emphasis>during</emphasis> the Timma development.
+	</para>
+	<para>
+	The detailed documentation development process is described at <ulink url="http://grabx.savatech.ro/papers/oodd.html">http://grabx.savatech.ro/papers/oodd.html</ulink>.
+	</para>
+	<para>
+	The structure of the documentation is:
+	<itemizedlist>
+	<listitem>
+	<para>Purpose</para>
+	</listitem>
+	<listitem>
+	<para>Features</para>
+	</listitem>
+	<listitem>
+	<para>User Guide</para>
+	</listitem>
+	<listitem>
+	<para>Requirements</para>
+	</listitem>
+	<listitem>
+	<para>Architecture</para>
+	</listitem>
+	<listitem>
+	<para>Design</para>
+	</listitem>
+	<listitem>
+	<para>Implementation</para>
+	</listitem>
+	<listitem>
+	<para>Test Issues</para>
+	</listitem>
+	</itemizedlist>
+	</para>
+	</section>
+
+	<section>
+	<title>Directory Structure and Build Process</title>
+	<para>
+	The backbone of the directory structure is Savatech project template compliant.
+	</para>
+	<para>
+	This site is also part of the Timma project and its sources are placed under the "doc/site" directory. The structure of the site sub-project is also Savatech project template compliant.
+	</para>
+	<para>
+	This structure raised some problems because there was a need to see the site build targets from the main build.bat file. The adopted solution is to include the targets from the site build.xml in the main build.xml.
+	</para>
+	</section>
+
+	<section>
+	<title>Deploy Process</title>
+	<para>
+	When a deploy occurs in the CVS an automated build process starts in the server side and compiles all the sources and runs the tests. This process also compiles this site sources and deploys the site at: <ulink url="http://vscarpia.savatech.ro/timma">http://vscarpia.savatech.ro/timma</ulink>.
+	</para>
+	</section>
+</article>

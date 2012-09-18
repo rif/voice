@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--$Id: project_plan.xml,v 1.5 2002/02/28 16:51:20 cdan Exp $-->
+
+<status>
+	<project-plan>
+		<!-- Place the latest iteration on top !!! 
+		     Only one document can have the inprogress="yes" attribute. 
+		     Group the iterations on releases. -->
+		<release name="project_templateAlpha">
+			<plan-topic href="./project_plan/it02.xml"/>
+			<plan-topic href="./project_plan/it01.xml"/>
+		</release>
+		<release name="project_template_PreAlpha">
+			<plan-topic href="./project_plan/it00.xml"/>
+		</release>
+	</project-plan>
+	<cvs href="this must be the URL to CVS sources for this project"/>
+	<build-status href="this must be the URL to the build status for this project"/>
+</status>

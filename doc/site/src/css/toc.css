@@ -1,0 +1,60 @@
+body {
+	COLOR: black; 
+	FONT-FAMILY: Tahoma, Arial, Verdana, Helvetica, sans-serif; 
+	FONT-SIZE: 10px;
+	FONT-WEIGHT: bold; 
+	TEXT-DECORATION: none;
+
+	BORDER-BOTTOM: 1px #000000 solid;
+
+	BACKGROUND: #EEEEEE;
+	
+	PADDING-TOP: 0px;
+	PADDING-BOTTOM: 0px;
+	PADDING-LEFT: 0px;
+	PADDING-RIGHT: 0px;
+}
+
+.title {
+	FONT-SIZE: 12px;
+	FONT-WEIGHT: bold;
+}
+
+.lastUpdate {
+	FONT-SIZE: 9px;	
+}
+
+.firstLevelLink {
+	PADDING-RIGHT: 4px; 
+	PADDING-LEFT: 4px;
+	FONT-SIZE: 11px; 
+	CURSOR: hand; 
+}
+
+A:link {
+	COLOR: #000000;
+	TEXT-DECORATION: none;
+	font-weight : bold;
+	PADDING-LEFT: 2px;
+}
+
+A:active {
+	COLOR: blue;
+	TEXT-DECORATION: none;
+	font-weight : bold;	
+	PADDING-LEFT: 2px;
+}
+
+A:visited {
+	COLOR: #000000;
+	TEXT-DECORATION: none;
+	font-weight : bold;
+	PADDING-LEFT: 2px;
+}
+
+A:hover {
+	COLOR: #000000;
+	TEXT-DECORATION: none;
+	font-weight : bold;
+	PADDING-LEFT: 2px;
+}

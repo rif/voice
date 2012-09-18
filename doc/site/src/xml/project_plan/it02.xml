@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This is a proposed iteration and
+ is only in a draft version !!! (see the draft attribute) --> 
+
+<iteration draft="yes">
+	<period start="03.02.2002" end="18.02.2002"/>
+	<cvs-tag>it02</cvs-tag>
+	<goals>
+		<itemizedlist>
+			<listitem>
+				The proposed goals for this iteration(02).
+			</listitem>
+		</itemizedlist>
+	</goals>
+	<notes>
+		<itemizedlist>
+			<listitem>
+				Here comes the notes.
+			</listitem>
+		</itemizedlist>    	    	    
+	</notes>
+</iteration>

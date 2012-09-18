@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<iteration>
+	<period start="07.01.2002" end="20.01.2002"/>
+	<cvs-tag>it00</cvs-tag>
+	<goals>
+		<itemizedlist>
+			<listitem>
+			<para>
+				The proposed goals for this iteration (00).
+			</para>
+			</listitem>
+		</itemizedlist>
+	</goals>
+	<accomplishments>
+		<itemizedlist>
+			<listitem>
+			<para>
+				What goals have been accomplished in this iteration.
+			</para>
+			</listitem>
+		</itemizedlist>
+	</accomplishments>
+	<incomplete-goals>
+		<itemizedlist>
+			<listitem>
+			<para>
+				Here comes the postponed goals.
+			</para>
+			</listitem>
+		</itemizedlist>
+		
+	</incomplete-goals>
+
+	<postponed-goals>
+		<itemizedlist>
+			<listitem>
+			<para>
+				Here comes the postponed goals.
+			</para>
+			</listitem>
+		</itemizedlist>
+		
+	</postponed-goals>
+	<notes>
+		<itemizedlist>
+			<listitem>
+			<para>
+				Here comes the notes.
+			</para>
+			</listitem>
+		</itemizedlist>
+	</notes>
+</iteration>
